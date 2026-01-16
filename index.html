@@ -1,0 +1,2020 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Diagnóstico Jurídico Estrutural para Startups – GRSA</title>
+<meta name="description" content="Leitura jurídica estratégica para organizar a base da startup, reduzir risco futuro e sustentar decisões de crescimento e investimento.">
+<meta name="author" content="Guilherme Rafael de Souza Araujo">
+<meta name="creator" content="Guilherme Rafael de Souza Araujo">
+<meta name="robots" content="index, follow">
+
+<style>
+:root{
+  --bg0:#050c16;
+  --bg1:#06101c;
+  --panel:#0b1627;
+  --ink:#eaf0ff;
+  --muted:#b7c3df;
+  --line:rgba(255,255,255,.12);
+  --accent:#9fb7ff;
+  --accent2:#d7e2ff;
+  --warn:#ffd38a;
+  --risk:#ff7a7a;
+  --ok:#7fe0b5;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+  --radius:22px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  --sans:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg0:#f6f7fb;
+    --bg1:#eef1f8;
+    --panel:#ffffff;
+    --ink:#0b1424;
+    --muted:#3e4b65;
+    --line:rgba(11,20,36,.12);
+    --accent:#2547ff;
+    --accent2:#10224f;
+    --warn:#7b5208;
+    --risk:#7c1d1d;
+    --ok:#0f5132;
+    --shadow:0 18px 48px rgba(11,20,36,.10);
+  }
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 700px at 70% 10%, rgba(159,183,255,.12), transparent 55%),
+    radial-gradient(900px 600px at 20% 90%, rgba(159,183,255,.08), transparent 60%),
+    linear-gradient(180deg,var(--bg0),var(--bg1) 60%,var(--bg0));
+}
+
+.gridFX{
+  position:fixed; inset:0; pointer-events:none; opacity:.35;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse at 50% 15%, black 35%, transparent 70%);
+}
+@media (prefers-color-scheme: light){
+  .gridFX{
+    opacity:.18;
+    background-image:
+      linear-gradient(to right, rgba(11,20,36,.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11,20,36,.04) 1px, transparent 1px);
+  }
+}
+
+.wrap{max-width:1200px;margin:0 auto;padding:26px 18px 90px}
+
+.topbar{
+  position:sticky;top:0;z-index:40;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  background:rgba(5,12,22,.85);
+  border-bottom:1px solid var(--line);
+}
+@media (prefers-color-scheme: light){
+  .topbar{ background:rgba(246,247,251,.78); }
+}
+.topbar .inner{
+  max-width:1200px;margin:0 auto;
+  padding:14px 18px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.brand{display:flex;flex-direction:column;gap:2px;min-width:240px}
+.brand h1{
+  margin:0;
+  font-size:13px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-weight:800;
+}
+.brand p{
+  margin:0;
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.06em;
+}
+.nav{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;
+}
+.nav a{
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid transparent;
+  transition:transform .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+}
+.nav a:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.05);
+  border-color:rgba(159,183,255,.22);
+  color:var(--accent2);
+}
+
+.hero{
+  margin-top:32px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+
+.panel{
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  box-shadow:var(--shadow);
+}
+@media (prefers-color-scheme: light){
+  .panel{ background:rgba(255,255,255,.86); }
+}
+.panel .pad{padding:28px}
+
+.kicker{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.75);
+  margin-bottom:16px;
+}
+@media (prefers-color-scheme: light){
+  .kicker{ color:rgba(11,20,36,.70); }
+}
+
+.title{
+  margin:0;
+  font-size:36px;
+  line-height:1.15;
+  font-weight:850;
+}
+.title em{color:var(--accent);font-style:normal}
+
+.lead{
+  margin-top:16px;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--muted);
+  max-width:74ch;
+}
+
+.anchor{
+  margin-top:22px;
+  padding-left:16px;
+  border-left:3px solid rgba(159,183,255,.45);
+  font-size:15px;
+  line-height:1.65;
+  color:rgba(255,255,255,.86);
+}
+@media (prefers-color-scheme: light){
+  .anchor{ color:rgba(11,20,36,.86); border-left-color:rgba(37,71,255,.45); }
+}
+
+.micro{
+  margin-top:18px;
+  font-size:12px;
+  line-height:1.6;
+  color:rgba(255,255,255,.74);
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+@media (prefers-color-scheme: light){
+  .micro{ color:rgba(11,20,36,.68); }
+}
+
+.ctaBox{
+  margin-top:28px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:14px 24px;
+  border-radius:12px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-decoration:none;
+  cursor:pointer;
+  border:1px solid;
+  transition:all .2s ease;
+}
+.btnPrimary{
+  background:linear-gradient(135deg,rgba(159,183,255,.20),rgba(159,183,255,.08));
+  border-color:rgba(159,183,255,.35);
+  color:var(--accent2);
+}
+.btnPrimary:hover{
+  transform:translateY(-2px);
+  background:linear-gradient(135deg,rgba(159,183,255,.28),rgba(159,183,255,.12));
+  border-color:rgba(159,183,255,.55);
+  box-shadow:0 14px 40px rgba(159,183,255,.20);
+}
+
+.section{margin-top:44px}
+.sectionHead{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:18px;
+}
+.sectionIcon{
+  font-size:28px;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.sectionTitle{
+  margin:0;
+  font-size:24px;
+  font-weight:750;
+  line-height:1.25;
+}
+.sectionTitle em{color:var(--accent);font-style:normal}
+.sectionDesc{
+  margin:6px 0 0;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.cognitiveLayer{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;
+}
+.cognitiveChip{
+  padding:18px 22px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  transition:all .2s ease;
+}
+.cognitiveChip:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(159,183,255,.25);
+  transform:translateY(-2px);
+}
+@media (prefers-color-scheme: light){
+  .cognitiveChip{background:rgba(255,255,255,.65)}
+  .cognitiveChip:hover{background:rgba(255,255,255,.95)}
+}
+.cognitiveChip h4{
+  margin:0 0 8px 0;
+  font-size:15px;
+  font-weight:700;
+  color:var(--accent2);
+}
+.cognitiveChip p{
+  margin:0;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+}
+
+.moduleCard{
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  padding:24px;
+  transition:all .2s ease;
+}
+.moduleCard:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(159,183,255,.25);
+  transform:translateY(-2px);
+}
+@media (prefers-color-scheme: light){
+  .moduleCard{background:rgba(255,255,255,.65)}
+  .moduleCard:hover{background:rgba(255,255,255,.95)}
+}
+.moduleCard h4{
+  margin:0 0 12px 0;
+  font-size:17px;
+  font-weight:750;
+  color:var(--ink);
+}
+.moduleCard p{
+  margin:0;
+  font-size:14px;
+  line-height:1.65;
+  color:var(--muted);
+}
+
+.criticalGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.criticalCard{
+  padding:20px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  transition:all .2s ease;
+}
+.criticalCard:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(159,183,255,.25);
+  transform:translateY(-2px);
+}
+@media (prefers-color-scheme: light){
+  .criticalCard{background:rgba(255,255,255,.65)}
+  .criticalCard:hover{background:rgba(255,255,255,.95)}
+}
+.criticalCard .num{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  background:rgba(159,183,255,.15);
+  color:var(--accent2);
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.criticalCard h5{
+  margin:0 0 8px 0;
+  font-size:15px;
+  font-weight:700;
+  color:var(--ink);
+}
+.criticalCard p{
+  margin:0;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+}
+
+.criticalConclusion{
+  margin-top:28px;
+  padding:24px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+@media (prefers-color-scheme: light){
+  .criticalConclusion{background:rgba(255,255,255,.65)}
+}
+.criticalConclusion h4{
+  margin:0 0 12px 0;
+  font-size:17px;
+  font-weight:750;
+  color:var(--accent2);
+}
+.criticalConclusion p{
+  margin:0;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--muted);
+}
+
+ul{
+  margin:14px 0;
+  padding-left:20px;
+  line-height:1.8;
+}
+ul li{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+/* ============================================================
+   SELO INSTITUCIONAL — IDENTIDADE DO SISTEMA
+============================================================ */
+
+.systemSeal{
+  margin-top:22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.systemSeal .seal{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(159,183,255,.25);
+  background:linear-gradient(
+    135deg,
+    rgba(159,183,255,.14),
+    rgba(159,183,255,.04)
+  );
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent2);
+  cursor:default;
+  user-select:none;
+}
+
+.systemSeal .seal span{
+  opacity:.85;
+}
+
+@media (prefers-color-scheme: light){
+  .systemSeal .seal{
+    border-color:rgba(37,71,255,.25);
+    background:linear-gradient(
+      135deg,
+      rgba(37,71,255,.10),
+      rgba(37,71,255,.03)
+    );
+    color:var(--accent2);
+  }
+}
+
+/* ============================================================
+   CHATBOT INSTITUCIONAL — ENQUADRAMENTO
+============================================================ */
+
+.chatToggle{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:rgba(159,183,255,.18);
+  border:1px solid rgba(159,183,255,.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.35);
+  transition:all .25s ease;
+  z-index:100;
+}
+.chatToggle:hover{
+  transform:scale(1.06);
+  background:rgba(159,183,255,.26);
+  box-shadow:0 10px 32px rgba(159,183,255,.22);
+}
+.chatToggle svg{width:26px;height:26px;fill:var(--accent2)}
+
+.chatWindow{
+  position:fixed;
+  bottom:92px;
+  right:22px;
+  width:380px;
+  max-height:560px;
+  background:rgba(11,22,39,.96);
+  border:1px solid rgba(159,183,255,.25);
+  border-radius:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.50);
+  display:none;
+  flex-direction:column;
+  z-index:100;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+@media (prefers-color-scheme: light){
+  .chatWindow{
+    background:rgba(255,255,255,.94);
+    border-color:rgba(37,71,255,.22);
+  }
+}
+.chatWindow.active{display:flex}
+
+.chatHeader{
+  padding:14px 18px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.chatHeader h3{
+  font-size:13px;
+  font-weight:800;
+  margin:0;
+  color:var(--ink);
+  letter-spacing:.06em;
+}
+.chatHeader button{
+  background:none;
+  border:none;
+  color:var(--muted);
+  font-size:20px;
+  cursor:pointer;
+  line-height:1;
+  transition:color .2s ease;
+}
+.chatHeader button:hover{color:var(--accent2)}
+
+.chatBody{
+  flex:1;
+  padding:14px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.chatMessage{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.chatBubble{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:12.5px;
+  line-height:1.6;
+  color:var(--ink);
+}
+@media (prefers-color-scheme: light){
+  .chatBubble{background:rgba(11,20,36,.04)}
+}
+
+.chatKicker{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.chatQuestion{
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+
+.chatOptions{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.chatOption{
+  padding:11px 13px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  cursor:pointer;
+  transition:all .2s ease;
+  font-size:12.5px;
+  color:var(--ink);
+  font-weight:600;
+}
+.chatOption:hover{
+  background:rgba(159,183,255,.10);
+  border-color:rgba(159,183,255,.30);
+  transform:translateX(3px);
+}
+
+.chatResult{
+  border:1px solid rgba(159,183,255,.25);
+  background:rgba(159,183,255,.08);
+  padding:14px;
+  border-radius:14px;
+}
+@media (prefers-color-scheme: light){
+  .chatResult{
+    border-color:rgba(37,71,255,.22);
+    background:rgba(37,71,255,.06);
+  }
+}
+.chatResult h4{
+  margin:0 0 10px 0;
+  font-size:13px;
+  font-weight:800;
+  color:var(--accent2);
+  letter-spacing:.04em;
+}
+.chatResult p{
+  margin:0 0 8px 0;
+  font-size:12.5px;
+  line-height:1.65;
+  color:var(--ink);
+}
+.chatResult p:last-of-type{margin-bottom:0}
+
+.chatNote{
+  margin-top:12px;
+  font-size:11.5px;
+  line-height:1.6;
+  color:rgba(255,255,255,.70);
+  border-left:2px solid rgba(159,183,255,.30);
+  padding-left:10px;
+}
+@media (prefers-color-scheme: light){
+  .chatNote{color:rgba(11,20,36,.65)}
+}
+
+.chatCta{
+  margin-top:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:.08em;
+  border:1px solid rgba(159,183,255,.35);
+  background:rgba(159,183,255,.14);
+  color:var(--accent2);
+  transition:all .2s ease;
+}
+.chatCta:hover{
+  transform:translateY(-1px);
+  background:rgba(159,183,255,.22);
+  border-color:rgba(159,183,255,.50);
+}
+
+.chatReset{
+  margin-top:14px;
+  text-align:center;
+}
+.chatReset button{
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--muted);
+  padding:9px 14px;
+  border-radius:10px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .2s ease;
+}
+.chatReset button:hover{
+  border-color:rgba(159,183,255,.30);
+  color:var(--accent2);
+  background:rgba(255,255,255,.03);
+}
+
+@media(max-width:768px){
+  .chatWindow{
+    width:calc(100vw - 32px);
+    right:16px;
+  }
+}
+
+@media(max-width:640px){
+  .title{font-size:28px}
+  .sectionTitle{font-size:20px}
+  .topbar .inner{flex-wrap:wrap}
+  .brand{min-width:auto}
+  .cognitiveLayer{grid-template-columns:1fr}
+  .criticalGrid{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   PATCH CSS — STAGE PACKS + MINI VIS + EXPAND
+============================================================ */
+
+/* animações suaves */
+@keyframes fadeInSection{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeInCard{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.stageWrap{
+  margin-top:44px;
+  opacity:0;
+  animation:fadeInSection .55s ease-out .05s forwards;
+}
+.stageGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:16px;
+  margin-top:14px;
+}
+.stageCard{
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(255,255,255,.03);
+  padding:18px 18px 16px;
+  transition:all .22s ease;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  opacity:0;
+  animation:fadeInCard .45s ease-out forwards;
+}
+.stageCard:nth-child(1){animation-delay:.05s}
+.stageCard:nth-child(2){animation-delay:.10s}
+.stageCard:nth-child(3){animation-delay:.15s}
+.stageCard:nth-child(4){animation-delay:.20s}
+.stageCard:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(159,183,255,.28);
+  transform:translateY(-2px);
+  box-shadow:0 14px 38px rgba(0,0,0,.24);
+}
+@media (prefers-color-scheme: light){
+  .stageCard{background:rgba(255,255,255,.70)}
+  .stageCard:hover{background:rgba(255,255,255,.95);box-shadow:0 12px 30px rgba(11,20,36,.09)}
+}
+
+.stageTop{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+.stageKicker{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.stageTitle{
+  margin:6px 0 0;
+  font-size:16px;
+  font-weight:800;
+  line-height:1.25;
+  color:var(--ink);
+}
+.stageMeta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.badge{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:5px 9px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:rgba(255,255,255,.02);
+  color:var(--muted);
+}
+.badge.ok{border-color:rgba(127,224,181,.25)}
+.badge.warn{border-color:rgba(255,211,138,.25)}
+.badge.risk{border-color:rgba(255,122,122,.22)}
+
+.stageDesc{
+  margin:12px 0 0;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+  max-width:62ch;
+}
+
+/* mini visual */
+.vizBox{
+  margin-top:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.02);
+  border-radius:12px;
+  padding:12px;
+}
+@media (prefers-color-scheme: light){
+  .vizBox{background:rgba(255,255,255,.80);border-color:rgba(11,20,36,.10)}
+}
+.vizTitle{
+  font-size:11px;
+  color:var(--muted);
+  margin:0 0 10px;
+  letter-spacing:.06em;
+}
+.vizBars{display:flex;flex-direction:column;gap:10px}
+.vizBar{
+  height:10px;border-radius:999px;overflow:hidden;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.06);
+}
+.vizBar span{
+  display:block;height:100%;
+  width:0%;
+  background:rgba(159,183,255,.34);
+  transition:width .9s cubic-bezier(.2,.8,.2,1);
+}
+@media (prefers-color-scheme: light){
+  .vizBar span{background:rgba(37,71,255,.26)}
+}
+.vizLegend{
+  margin-top:10px;
+  display:flex;justify-content:space-between;gap:10px;
+  font-size:11px;
+  color:rgba(255,255,255,.55);
+}
+@media (prefers-color-scheme: light){
+  .vizLegend{color:rgba(11,20,36,.52)}
+}
+
+/* expand inline */
+.expandWrap{margin-top:16px; display:none}
+.expandWrap.is-open{display:block}
+.expandPanel{
+  border:1px solid rgba(159,183,255,.18);
+  background:rgba(159,183,255,.05);
+  border-radius:18px;
+  padding:18px 18px 16px;
+}
+@media (prefers-color-scheme: light){
+  .expandPanel{border-color:rgba(37,71,255,.15);background:rgba(37,71,255,.04)}
+}
+.expandTop{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-bottom:12px;border-bottom:1px solid var(--line);
+}
+.expandKicker{
+  font-family:var(--mono);
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.75);
+}
+@media (prefers-color-scheme: light){
+  .expandKicker{color:rgba(11,20,36,.70)}
+}
+.expandClose{
+  width:34px;height:34px;border-radius:10px;
+  background:transparent;border:1px solid var(--line);
+  color:var(--muted);cursor:pointer;
+  transition:all .2s ease;
+  font-size:22px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+}
+.expandClose:hover{
+  border-color:rgba(159,183,255,.35);
+  color:var(--accent2);
+  background:rgba(255,255,255,.04);
+}
+
+.expandGrid{
+  display:grid;
+  grid-template-columns:1.05fr 1.25fr;
+  gap:16px;
+  padding-top:14px;
+}
+@media (max-width:900px){.expandGrid{grid-template-columns:1fr}}
+
+.miniDash{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:12px;
+}
+@media (max-width:520px){.miniDash{grid-template-columns:repeat(2,1fr)}}
+.miniMetric{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  border-radius:12px;
+  padding:10px 10px 9px;
+}
+@media (prefers-color-scheme: light){
+  .miniMetric{border-color:rgba(11,20,36,.10);background:rgba(255,255,255,.70)}
+}
+.mLabel{
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  font-family:var(--mono);
+}
+@media (prefers-color-scheme: light){
+  .mLabel{color:rgba(11,20,36,.50)}
+}
+.mValue{font-size:13px;font-weight:800;color:var(--ink);margin-top:6px}
+
+.expandBullets{
+  margin:10px 0 0;
+  padding-left:18px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.65;
+}
+.expandNote{
+  margin-top:12px;
+  font-size:12px;
+  color:rgba(255,255,255,.68);
+  border-left:2px solid rgba(159,183,255,.35);
+  padding-left:12px;
+}
+@media (prefers-color-scheme: light){
+  .expandNote{color:rgba(11,20,36,.62)}
+}
+.expandCtas{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.expandCtaPrimary,.expandCtaGhost{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 14px;border-radius:12px;
+  text-decoration:none;font-weight:800;font-size:12px;
+  letter-spacing:.08em;border:1px solid;
+  transition:all .2s ease;
+}
+.expandCtaPrimary{
+  color:var(--accent2);
+  border-color:rgba(159,183,255,.35);
+  background:rgba(159,183,255,.14);
+}
+.expandCtaPrimary:hover{transform:translateY(-1px);background:rgba(159,183,255,.22);border-color:rgba(159,183,255,.50)}
+.expandCtaGhost{
+  color:var(--muted);
+  border-color:var(--line);
+  background:transparent;
+}
+.expandCtaGhost:hover{
+  transform:translateY(-1px);
+  border-color:rgba(159,183,255,.30);
+  color:var(--accent2);
+  background:rgba(255,255,255,.03);
+}
+
+/* ============================================================
+   BLOCO INVESTIMENTO — CARDS + LIMITES
+============================================================ */
+.investGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+}
+.investCard{
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  padding:18px 20px;
+  transition:all .2s ease;
+}
+.investCard:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(159,183,255,.25);
+  transform:translateY(-2px);
+}
+@media (prefers-color-scheme: light){
+  .investCard{background:rgba(255,255,255,.65)}
+  .investCard:hover{background:rgba(255,255,255,.95)}
+}
+.investCard h4{
+  margin:0 0 10px;
+  font-size:15px;
+  font-weight:850;
+}
+.investCard p{
+  margin:0;
+  font-size:13px;
+  line-height:1.65;
+  color:var(--muted);
+}
+.limitGrid{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;
+}
+.limitChip{
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.02);
+  padding:12px 14px;
+}
+@media (prefers-color-scheme: light){
+  .limitChip{background:rgba(255,255,255,.75)}
+}
+.limitChip strong{
+  display:block;
+  font-size:12px;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+}
+.limitChip span{
+  display:block;
+  margin-top:6px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.stageCard summary{
+  list-style:none;
+  cursor:pointer;
+}
+.stageCard summary::-webkit-details-marker{display:none}
+
+.stageTag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(159,183,255,.22);
+  background:rgba(159,183,255,.10);
+  font-size:11px;
+  letter-spacing:.10em;
+  text-transform:uppercase;
+  color:var(--accent2);
+  font-weight:750;
+}
+
+.stageTitle{
+  margin:10px 0 6px;
+  font-size:15px;
+  font-weight:800;
+  color:var(--ink);
+}
+.stageMeta{
+  margin:0;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.stageBullets{
+  margin:12px 0 0;
+  padding-left:18px;
+}
+.stageBullets li{
+  margin-bottom:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+<div class="gridFX"></div>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">
+      <h1><a href="https://grsa.adv.br" style="color:inherit;text-decoration:none">GRSA</a></h1>
+      <p>Guilherme Rafael de Souza Araujo — Advisor · Board-Level · Pesquisador · Escritor</p>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Portal</a>
+      <a href="autor.html">Autor</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="panel">
+    <div class="pad">
+      <div class="kicker">Sistema de diagnóstico jurídico</div>
+      <h2 class="title">Diagnóstico Jurídico Estrutural para <em>Startups</em></h2>
+      <p class="lead">
+        Leitura jurídica estratégica para organizar a base da startup, reduzir risco futuro e sustentar decisões de crescimento e investimento.
+      </p>
+      <div class="anchor">
+        A maioria dos problemas jurídicos em startups não surge por má-fé ou erro técnico — surge por ausência de organização no momento certo.
+      </div>
+      <div class="anchor">
+        Decisões simples se tornam caras quando a estrutura jurídica não foi organizada no tempo adequado.
+      </div>
+      <div class="anchor">
+        Como extensão pública dessa arquitetura, o <a href="termometro.html" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(159,183,255,.35)">Termômetro Regulatório</a>
+        oferece leitura contínua de sinais sancionatórios e padrões institucionais relevantes, funcionando como camada aberta de observação regulatória.
+      </div>
+      <div class="ctaBox">
+        <a href="mailto:guilhermersaraujo@proton.me?subject=Solicitação%20de%20Diagnóstico%20Jurídico%20Estrutural" class="btn btnPrimary">
+          <span>Solicitar diagnóstico</span>
+        </a>
+      </div>
+      <div class="micro">
+        <span>Responsável técnico</span>
+        <span class="dot"></span>
+        <span>Advogado</span>
+        <span class="dot"></span>
+        <span>OAB/PE 48.686</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO POR ESTÁGIO -->
+<section class="stageWrap">
+  <div class="sectionHead">
+    <div class="sectionIcon">📊</div>
+    <div>
+      <h3 class="sectionTitle">Diagnóstico por <em>Estágio</em></h3>
+      <p class="sectionDesc">Cada estágio possui riscos específicos. Clique para expandir.</p>
+    </div>
+  </div>
+
+  <div class="stageGrid">
+    <!-- ESTÁGIO 1 -->
+    <div class="stageCard" data-expand-open="stage-idea" tabindex="0" role="button" aria-expanded="false">
+      <div class="stageTop">
+        <div>
+          <div class="stageKicker">Estágio 1</div>
+          <h4 class="stageTitle">Ideia / Pré-MVP</h4>
+        </div>
+      </div>
+      <div class="stageMeta">
+        <span class="badge risk">Alta informalidade</span>
+        <span class="badge warn">IP em risco</span>
+      </div>
+      <p class="stageDesc">
+        Maior risco: IP não protegida, terceiros sem contrato, promessas informais que viram passivo.
+      </p>
+      <div class="vizBox">
+        <div class="vizTitle">Prioridades típicas</div>
+        <div class="vizBars">
+          <div class="vizBar"><span style="width:0%" data-width="85%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="70%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="60%"></span></div>
+        </div>
+        <div class="vizLegend">
+          <span>IP</span>
+          <span>Fundadores</span>
+          <span>Terceiros</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTÁGIO 2 -->
+    <div class="stageCard" data-expand-open="stage-mvp" tabindex="0" role="button" aria-expanded="false">
+      <div class="stageTop">
+        <div>
+          <div class="stageKicker">Estágio 2</div>
+          <h4 class="stageTitle">MVP / Tração Inicial</h4>
+        </div>
+      </div>
+      <div class="stageMeta">
+        <span class="badge warn">Contratos informais</span>
+        <span class="badge ok">Produto ativo</span>
+      </div>
+      <p class="stageDesc">
+        Custo explode em: contratos não revisados, dados sem governança, expectativa mal definida do cliente.
+      </p>
+      <div class="vizBox">
+        <div class="vizTitle">Prioridades típicas</div>
+        <div class="vizBars">
+          <div class="vizBar"><span style="width:0%" data-width="80%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="75%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="65%"></span></div>
+        </div>
+        <div class="vizLegend">
+          <span>Contratos</span>
+          <span>LGPD</span>
+          <span>IP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTÁGIO 3 -->
+    <div class="stageCard" data-expand-open="stage-growth" tabindex="0" role="button" aria-expanded="false">
+      <div class="stageTop">
+        <div>
+          <div class="stageKicker">Estágio 3</div>
+          <h4 class="stageTitle">Crescimento (time/equity)</h4>
+        </div>
+      </div>
+      <div class="stageMeta">
+        <span class="badge risk">Conflito societário</span>
+        <span class="badge warn">Equity informal</span>
+      </div>
+      <p class="stageDesc">
+        Risco típico: conflito entre fundadores, incentivos sem desenho, terceiros com expectativa de equity.
+      </p>
+      <div class="vizBox">
+        <div class="vizTitle">Prioridades típicas</div>
+        <div class="vizBars">
+          <div class="vizBar"><span style="width:0%" data-width="90%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="75%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="70%"></span></div>
+        </div>
+        <div class="vizLegend">
+          <span>Societário</span>
+          <span>Equity</span>
+          <span>Vesting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESTÁGIO 4 -->
+    <div class="stageCard" data-expand-open="stage-invest" tabindex="0" role="button" aria-expanded="false">
+      <div class="stageTop">
+        <div>
+          <div class="stageKicker">Estágio 4</div>
+          <h4 class="stageTitle">Pré-investimento</h4>
+        </div>
+      </div>
+      <div class="stageMeta">
+        <span class="badge ok">Due diligence</span>
+        <span class="badge warn">Passivo oculto</span>
+      </div>
+      <p class="stageDesc">
+        Diagnóstico vira pré-due diligence: reduzir passivo, documentar IP, eliminar ruído antes da captação.
+      </p>
+      <div class="vizBox">
+        <div class="vizTitle">Prioridades típicas</div>
+        <div class="vizBars">
+          <div class="vizBar"><span style="width:0%" data-width="95%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="85%"></span></div>
+          <div class="vizBar"><span style="width:0%" data-width="80%"></span></div>
+        </div>
+        <div class="vizLegend">
+          <span>DD prep</span>
+          <span>Cap table</span>
+          <span>Compliance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPAND INLINE STAGE 1 -->
+  <div class="expandWrap" id="expand-stage-idea">
+    <div class="expandPanel">
+      <div class="expandTop">
+        <div class="expandKicker">Estágio 1 · Ideia / Pré-MVP</div>
+        <button class="expandClose" data-expand-close="stage-idea" aria-label="Fechar">×</button>
+      </div>
+      <div class="expandGrid">
+        <div>
+          <div class="miniDash">
+            <div class="miniMetric">
+              <div class="mLabel">Duração</div>
+              <div class="mValue">2–3 dias</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Entrega</div>
+              <div class="mValue">PDF</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Risco</div>
+              <div class="mValue">Alto</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Formato</div>
+              <div class="mValue">Remoto</div>
+            </div>
+          </div>
+          <h4 style="margin:10px 0 8px;font-size:14px;font-weight:750;color:var(--ink)">O que é analisado</h4>
+          <ul class="expandBullets">
+            <li>Titularidade da propriedade intelectual</li>
+            <li>Relação entre fundadores (verbal ou informal)</li>
+            <li>Terceiros envolvidos sem contrato</li>
+            <li>Promessas de equity ou participação</li>
+          </ul>
+          <div class="expandNote">
+            Neste estágio, o maior risco é deixar IP sem proteção ou criar expectativas informais que viram passivo.
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;font-size:14px;font-weight:750;color:var(--ink)">Você recebe</h4>
+          <ul class="expandBullets">
+            <li>Documento técnico (PDF) com análise de risco</li>
+            <li>Classificação: adequado / ajustável / crítico</li>
+            <li>Checklist de prioridades imediatas</li>
+            <li>Encaminhamentos claros</li>
+          </ul>
+          <div class="expandCtas">
+            <a href="mailto:guilhermersaraujo@proton.me?subject=Estágio%201%20-%20Solicitação%20de%20Diagnóstico" class="expandCtaPrimary">Solicitar diagnóstico →</a>
+            <a href="#solicitar" class="expandCtaGhost">Ver condições</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPAND INLINE STAGE 2 -->
+  <div class="expandWrap" id="expand-stage-mvp">
+    <div class="expandPanel">
+      <div class="expandTop">
+        <div class="expandKicker">Estágio 2 · MVP / Tração Inicial</div>
+        <button class="expandClose" data-expand-close="stage-mvp" aria-label="Fechar">×</button>
+      </div>
+      <div class="expandGrid">
+        <div>
+          <div class="miniDash">
+            <div class="miniMetric">
+              <div class="mLabel">Duração</div>
+              <div class="mValue">3–5 dias</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Entrega</div>
+              <div class="mValue">PDF</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Risco</div>
+              <div class="mValue">Médio-Alto</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Formato</div>
+              <div class="mValue">Remoto</div>
+            </div>
+          </div>
+          <h4 style="margin:10px 0 8px;font-size:14px;font-weight:750;color:var(--ink)">O que é analisado</h4>
+          <ul class="expandBullets">
+            <li>Contratos com clientes e fornecedores</li>
+            <li>Governança de dados e adequação LGPD</li>
+            <li>Propriedade intelectual e licenciamento</li>
+            <li>Expectativas não documentadas</li>
+          </ul>
+          <div class="expandNote">
+            Com produto ativo, fragilidades contratuais e de dados geram custo direto.
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;font-size:14px;font-weight:750;color:var(--ink)">Você recebe</h4>
+          <ul class="expandBullets">
+            <li>Documento técnico (PDF) com análise de risco</li>
+            <li>Classificação por área (contratos, LGPD, IP)</li>
+            <li>Mapeamento de gaps operacionais</li>
+            <li>Priorização de ajustes</li>
+          </ul>
+          <div class="expandCtas">
+            <a href="mailto:guilhermersaraujo@proton.me?subject=Estágio%202%20-%20Solicitação%20de%20Diagnóstico" class="expandCtaPrimary">Solicitar diagnóstico →</a>
+            <a href="#solicitar" class="expandCtaGhost">Ver condições</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPAND INLINE STAGE 3 -->
+  <div class="expandWrap" id="expand-stage-growth">
+    <div class="expandPanel">
+      <div class="expandTop">
+        <div class="expandKicker">Estágio 3 · Crescimento (time/equity)</div>
+        <button class="expandClose" data-expand-close="stage-growth" aria-label="Fechar">×</button>
+      </div>
+      <div class="expandGrid">
+        <div>
+          <div class="miniDash">
+            <div class="miniMetric">
+              <div class="mLabel">Duração</div>
+              <div class="mValue">4–6 dias</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Entrega</div>
+              <div class="mValue">PDF</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Risco</div>
+              <div class="mValue">Alto</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Formato</div>
+              <div class="mValue">Remoto</div>
+            </div>
+          </div>
+          <h4 style="margin:10px 0 8px;font-size:14px;font-weight:750;color:var(--ink)">O que é analisado</h4>
+          <ul class="expandBullets">
+            <li>Estrutura societária e acordo de quotistas</li>
+            <li>Organização de equity e vesting</li>
+            <li>Incentivos para time (formais e informais)</li>
+            <li>Advisors e expectativas de participação</li>
+          </ul>
+          <div class="expandNote">
+            Conflitos societários e incentivos mal desenhados travam crescimento.
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;font-size:14px;font-weight:750;color:var(--ink)">Você recebe</h4>
+          <ul class="expandBullets">
+            <li>Documento técnico (PDF) com análise de risco</li>
+            <li>Leitura de cap table e estrutura societária</li>
+            <li>Mapeamento de expectativas informais</li>
+            <li>Recomendações de governança</li>
+          </ul>
+          <div class="expandCtas">
+            <a href="mailto:guilhermersaraujo@proton.me?subject=Estágio%203%20-%20Solicitação%20de%20Diagnóstico" class="expandCtaPrimary">Solicitar diagnóstico →</a>
+            <a href="#solicitar" class="expandCtaGhost">Ver condições</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPAND INLINE STAGE 4 -->
+  <div class="expandWrap" id="expand-stage-invest">
+    <div class="expandPanel">
+      <div class="expandTop">
+        <div class="expandKicker">Estágio 4 · Pré-investimento</div>
+        <button class="expandClose" data-expand-close="stage-invest" aria-label="Fechar">×</button>
+      </div>
+      <div class="expandGrid">
+        <div>
+          <div class="miniDash">
+            <div class="miniMetric">
+              <div class="mLabel">Duração</div>
+              <div class="mValue">5–7 dias</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Entrega</div>
+              <div class="mValue">PDF</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Risco</div>
+              <div class="mValue">Crítico</div>
+            </div>
+            <div class="miniMetric">
+              <div class="mLabel">Formato</div>
+              <div class="mValue">Remoto</div>
+            </div>
+          </div>
+          <h4 style="margin:10px 0 8px;font-size:14px;font-weight:750;color:var(--ink)">O que é analisado</h4>
+          <ul class="expandBullets">
+            <li>Preparação para due diligence</li>
+            <li>Cap table e estrutura de governança</li>
+            <li>Passivos ocultos e contingências</li>
+            <li>Documentação de IP e compliance</li>
+          </ul>
+          <div class="expandNote">
+            Investidores farão due diligence. O diagnóstico antecipa problemas e reduz custo de ajuste.
+          </div>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;font-size:14px;font-weight:750;color:var(--ink)">Você recebe</h4>
+          <ul class="expandBullets">
+            <li>Documento técnico (PDF) orientado a DD</li>
+            <li>Classificação de risco por área</li>
+            <li>Checklist de documentação necessária</li>
+            <li>Encaminhamentos priorizados</li>
+          </ul>
+          <div class="expandCtas">
+            <a href="mailto:guilhermersaraujo@proton.me?subject=Estágio%204%20-%20Solicitação%20de%20Diagnóstico" class="expandCtaPrimary">Solicitar diagnóstico →</a>
+            <a href="#solicitar" class="expandCtaGhost">Ver condições</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE ESTE DIAGNÓSTICO É (E NÃO É) -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">📋</div>
+    <div>
+      <h3 class="sectionTitle">O que este diagnóstico é <em>(e não é)</em></h3>
+    </div>
+  </div>
+
+  <div class="cognitiveLayer">
+    <div class="cognitiveChip">
+      <h4>O que é</h4>
+      <p>Uma leitura jurídica estruturada da startup</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que é</h4>
+      <p>Um diagnóstico com escopo fechado e entrega objetiva</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que é</h4>
+      <p>Uma análise orientada à decisão, não à produção de documentos</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que é</h4>
+      <p>Um instrumento de organização fundacional</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que não é</h4>
+      <p>Não é assessoria jurídica contínua</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que não é</h4>
+      <p>Não é elaboração de contratos</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que não é</h4>
+      <p>Não é consultoria informal</p>
+    </div>
+    <div class="cognitiveChip">
+      <h4>O que não é</h4>
+      <p>Não é serviço de baixo custo ou alta rotatividade</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM ESTE DIAGNÓSTICO FAZ SENTIDO -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">🎯</div>
+    <div>
+      <h3 class="sectionTitle">Para quem este diagnóstico <em>faz sentido</em></h3>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="pad">
+      <ul>
+        <li>Startups em estágio inicial (ideia, MVP ou tração inicial)</li>
+        <li>Fundadores técnicos ou não jurídicos</li>
+        <li>Negócios com intenção real de crescimento ou captação</li>
+        <li>Startups reguladas ou com risco jurídico relevante</li>
+        <li>Times que querem evitar problemas antes que eles apareçam</li>
+        <li>Projetos que precisam se organizar antes de investidores</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É ANALISADO NO DIAGNÓSTICO -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">🔍</div>
+    <div>
+      <h3 class="sectionTitle">O que é analisado <em>no diagnóstico</em></h3>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="pad">
+      <ul>
+        <li>Estrutura societária e papel efetivo dos fundadores</li>
+        <li>Organização de equity, vesting e incentivos</li>
+        <li>Situação da propriedade intelectual (IP)</li>
+        <li>Advisors, terceiros e expectativas informais</li>
+        <li>Leitura geral sob a ótica de investidores</li>
+        <li>Maturidade jurídica fundacional</li>
+      </ul>
+      <div class="anchor" style="margin-top:20px">
+        A análise resulta em uma classificação de maturidade jurídica, com identificação de riscos e impactos potenciais.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE O CLIENTE RECEBE -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">📦</div>
+    <div>
+      <h3 class="sectionTitle">O que o cliente <em>recebe</em></h3>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="pad">
+      <ul>
+        <li>Documento técnico escrito (PDF)</li>
+        <li>Classificação de risco (adequado / ajustável / crítico)</li>
+        <li>Identificação dos principais pontos sensíveis</li>
+        <li>Encaminhamentos claros e priorizados</li>
+        <li>Visão jurídica alinhada à lógica de investidores e governança</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA O FLUXO -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">⚙️</div>
+    <div>
+      <h3 class="sectionTitle">Como funciona <em>o fluxo</em></h3>
+    </div>
+  </div>
+
+  <div class="criticalGrid">
+    <div class="criticalCard">
+      <div class="num">1</div>
+      <h5>Manifestação de interesse</h5>
+      <p>O cliente manifesta interesse pelo diagnóstico</p>
+    </div>
+    <div class="criticalCard">
+      <div class="num">2</div>
+      <h5>Contextualização</h5>
+      <p>Preenche um formulário inicial de contextualização</p>
+    </div>
+    <div class="criticalCard">
+      <div class="num">3</div>
+      <h5>Validação de escopo</h5>
+      <p>O escopo e o formato de entrega são validados</p>
+    </div>
+    <div class="criticalCard">
+      <div class="num">4</div>
+      <h5>Apresentação das condições</h5>
+      <p>As condições e o prazo são apresentados diretamente</p>
+    </div>
+    <div class="criticalCard">
+      <div class="num">5</div>
+      <h5>Execução</h5>
+      <p>O diagnóstico é executado como projeto fechado</p>
+    </div>
+  </div>
+
+  <div class="criticalConclusion">
+    <h4>Nota sobre atendimento</h4>
+    <p>Não há atendimento informal, exposição em grupos ou execução sem alinhamento prévio.</p>
+  </div>
+</section>
+
+<!-- POSICIONAMENTO INSTITUCIONAL -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">⚖️</div>
+    <div>
+      <h3 class="sectionTitle">Posicionamento <em>Institucional</em></h3>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="pad">
+      <p class="lead">
+        Este sistema foi concebido para operar como camada de leitura institucional em ambientes sensíveis, onde decisões jurídicas, regulatórias e estratégicas produzem efeitos estruturais.
+      </p>
+      <div class="anchor">
+        A lógica não é de prestação de serviço, mas de organização decisória, redução de risco sistêmico e coerência institucional.
+      </div>
+      <div class="anchor">
+        A leitura é conduzida por operador humano qualificado. A arquitetura, os critérios e os parâmetros pertencem ao sistema.
+      </div>
+      <div class="anchor">
+        Como extensão pública dessa lógica, o Termômetro Regulatório materializa padrões de risco, leitura sancionatória e sinais institucionais relevantes, funcionando como instrumento contínuo de observação regulatória.
+      </div>
+      <div class="anchor">
+        O foco não é volume, visibilidade ou marketing jurídico. É estrutura, clareza e governança sob pressão.
+      </div>
+      
+      <div class="systemSeal" aria-label="Identidade institucional do ecossistema">
+        <div class="seal">🧠 Sistema de Leitura Regulatória</div>
+        <div class="seal">⚖️ Governança & Decisão Institucional</div>
+        <div class="seal">🔒 Ambientes Sensíveis</div>
+        <div class="seal">📊 Redução de Risco Sistêmico</div>
+        <div class="seal">
+          <a href="termometro.html" style="color:inherit;text-decoration:none">🌡️ Termômetro Regulatório</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLICITAR DIAGNÓSTICO -->
+<section class="section" id="solicitar">
+  <div class="sectionHead">
+    <div class="sectionIcon">✉️</div>
+    <div>
+      <h3 class="sectionTitle">Solicitar <em>Diagnóstico</em></h3>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="pad">
+      <p class="lead">
+        O primeiro passo é responder a um breve formulário de contextualização.
+        A partir dessa leitura, o formato adequado, o prazo e as condições são definidos.
+      </p>
+      <div class="ctaBox">
+        <a href="mailto:guilhermersaraujo@proton.me?subject=Solicitação%20de%20Diagnóstico%20Jurídico%20Estrutural" class="btn btnPrimary">
+          <span>Solicitar diagnóstico</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEITURA FUNDACIONAL E ESTRUTURAÇÃO PARA AMBIENTES DE INVESTIMENTO -->
+<section class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">🔒</div>
+    <div>
+      <h3 class="sectionTitle">Leitura Fundacional e Estruturação para <em>Ambientes de Investimento</em></h3>
+      <p class="sectionDesc">Camada jurídica e decisória voltada à organização estrutural, rastreabilidade e leitura institucional do projeto.</p>
+    </div>
+  </div>
+
+  <!-- GRID — O QUE ESTE SISTEMA PRODUZ -->
+  <div class="investGrid">
+    <div class="investCard">
+      <h4>Estrutura Fundacional do Projeto</h4>
+      <p>
+        Leitura jurídica da base societária, da lógica de participação e da organização inicial do projeto, com foco em coerência estrutural e prevenção de conflitos futuros.
+      </p>
+      <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.60);font-style:italic">
+        Base observada sob lógica de governança.
+      </div>
+    </div>
+
+    <div class="investCard">
+      <h4>Documento Fundacional Estruturado</h4>
+      <p>
+        Consolidação técnica da leitura realizada, em documento escrito, com identificação de riscos, pontos sensíveis e encaminhamentos priorizados.
+      </p>
+      <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.60);font-style:italic">
+        Documento apto à leitura institucional.
+      </div>
+    </div>
+
+    <div class="investCard">
+      <h4>Rastreabilidade Institucional e Registro</h4>
+      <p>
+        Estruturação documental com foco em rastreabilidade, organização histórica e possibilidade de registro intelectual do projeto, da metodologia ou da estrutura jurídica.
+      </p>
+      <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.60);font-style:italic">
+        Registro como camada de proteção e memória institucional.
+      </div>
+    </div>
+
+    <div class="investCard">
+      <h4>Leitura sob Ótica de Investimento</h4>
+      <p>
+        Avaliação da estrutura jurídica e decisória conforme critérios usualmente observados por fundos, investidores institucionais e processos de due diligence.
+      </p>
+      <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.60);font-style:italic">
+        Antecipação de entraves recorrentes.
+      </div>
+    </div>
+  </div>
+
+  <!-- GRID — O QUE NÃO É PROMETIDO -->
+  <div class="limitGrid">
+    <div class="limitChip">
+      <strong>Não é execução</strong>
+      <span>O sistema não executa contratos, operações ou atos jurídicos.</span>
+    </div>
+
+    <div class="limitChip">
+      <strong>Não é assessoria contínua</strong>
+      <span>Não há acompanhamento permanente nem atuação operacional recorrente.</span>
+    </div>
+
+    <div class="limitChip">
+      <strong>Não é aceleração</strong>
+      <span>Não há promessa de captação, valuation ou crescimento.</span>
+    </div>
+
+    <div class="limitChip">
+      <strong>Não é marketing jurídico</strong>
+      <span>O foco não é visibilidade, pitch ou exposição pública.</span>
+    </div>
+  </div>
+
+  <!-- BLOCO DE FECHAMENTO -->
+  <div class="panel" style="margin-top:28px">
+    <div class="pad">
+      <p class="lead">
+        Este sistema atua antes da execução.
+      </p>
+      <div class="anchor">
+        Seu papel é organizar a leitura fundacional do projeto, reduzir risco estrutural e permitir que decisões futuras sejam tomadas com clareza institucional.
+      </div>
+      <div class="anchor">
+        Em ambientes de investimento, problemas jurídicos raramente surgem por ausência de capital. Surgem por estrutura mal lida no momento errado.
+      </div>
+      <p style="margin-top:18px;font-size:12px;color:var(--muted);line-height:1.6">
+        Documento informativo. Não constitui assessoria jurídica contínua nem recomendação de investimento.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ INSTITUCIONAL -->
+<section style="margin-top:60px">
+  <div class="panel">
+    <div class="pad" style="text-align:center">
+      <h4 style="margin:0 0 12px 0;font-size:17px;font-weight:750">Guilherme Rafael de Souza Araujo</h4>
+      <p style="margin:0 0 8px 0;font-size:14px;color:var(--muted)">Advogado — OAB/PE 48.686</p>
+      <p style="margin:0 0 18px 0;font-size:13px;line-height:1.7;color:var(--muted)">
+        Leitura regulatória, governança jurídica e estruturação decisória.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:center;margin-bottom:18px">
+        <div style="font-size:12px;color:var(--muted)">
+          Contato institucional:
+          <a href="mailto:guilhermersaraujo@proton.me" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(159,183,255,.35)">guilhermersaraujo@proton.me</a>
+        </div>
+        <div style="font-size:12px;color:var(--muted)">
+          Portal institucional:
+          <a href="https://grsa.adv.br" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(159,183,255,.35)">https://grsa.adv.br</a>
+        </div>
+      </div>
+      <p style="margin:18px 0 0;font-size:12px;color:var(--muted);line-height:1.6">
+        Camada pública complementar:
+        <a href="termometro.html"
+           style="color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(159,183,255,.35)">
+          Termômetro Regulatório
+        </a>
+        — instrumento de leitura contínua de padrões sancionatórios e sinais institucionais.
+      </p>
+      <p style="margin:10px 0 0;font-size:11px;color:var(--muted);opacity:.75">
+        Operado no âmbito institucional do GRSA.
+      </p>
+      <p style="margin:8px 0 0;font-size:11px;color:var(--muted);line-height:1.6">
+        Documento informativo • Uso restrito • Não constitui assessoria jurídica contínua
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="margin-top:60px;padding-top:28px;border-top:1px solid var(--line);text-align:center">
+  <p style="font-size:12px;color:var(--muted);margin:0;line-height:1.8">
+    © 2026 · Guilherme Rafael de Souza Araujo<br>
+    GRSA — Leitura Regulatória & Estruturação Decisória
+  </p>
+</footer>
+
+</div>
+
+<!-- CHATBOT DE ROTEAMENTO -->
+<div class="chatToggle" id="chatToggle" aria-label="Assistente de Roteamento">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="15.5" cy="9.5" r="1.5"/>
+    <circle cx="8.5" cy="9.5" r="1.5"/>
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.21-5.37C11.07 8.33 14.05 10 17.42 10c.78 0 1.53-.09 2.25-.26.21.7.33 1.47.33 2.26 0 4.41-3.59 8-8 8z"/>
+  </svg>
+</div>
+
+<div class="chatWindow" id="chatWindow">
+  <div class="chatHeader">
+    <h3>Roteamento Rápido</h3>
+    <button id="chatClose" aria-label="Fechar">×</button>
+  </div>
+  <div class="chatBody" id="chatBody"></div>
+</div>
+
+<script>
+/* ============================================================
+   PATCH v1 — Expand por estágio
+============================================================ */
+(function(){
+  const cards = document.querySelectorAll('[data-expand-open]');
+  const closeBtns = document.querySelectorAll('[data-expand-close]');
+  
+  cards.forEach(card => {
+    const targetId = card.getAttribute('data-expand-open');
+    const expandWrap = document.getElementById('expand-' + targetId);
+    
+    function toggle(){
+      const isOpen = expandWrap.classList.contains('is-open');
+      document.querySelectorAll('.expandWrap').forEach(w => w.classList.remove('is-open'));
+      document.querySelectorAll('[data-expand-open]').forEach(c => c.setAttribute('aria-expanded', 'false'));
+      
+      if(!isOpen){
+        expandWrap.classList.add('is-open');
+        card.setAttribute('aria-expanded', 'true');
+        expandWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // animar barras
+        setTimeout(()=>{
+          card.querySelectorAll('.vizBar span').forEach(bar => {
+            bar.style.width = bar.getAttribute('data-width');
+          });
+        }, 150);
+      }
+    }
+    
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+      if(e.key === 'Escape') {
+        expandWrap.classList.remove('is-open');
+        card.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+  
+  closeBtns.forEach(btn => {
+    const targetId = btn.getAttribute('data-expand-close');
+    const expandWrap = document.getElementById('expand-' + targetId);
+    const card = document.querySelector('[data-expand-open="'+targetId+'"]');
+    
+    btn.addEventListener('click', () => {
+      expandWrap.classList.remove('is-open');
+      if(card) card.setAttribute('aria-expanded', 'false');
+    });
+  });
+  
+  // animar barras ao carregar
+  setTimeout(()=>{
+    document.querySelectorAll('.stageCard .vizBar span').forEach(bar => {
+      bar.style.width = bar.getAttribute('data-width');
+    });
+  }, 400);
+})();
+</script>
+
+<script>
+/* ============================================================
+   PATCH v1 — Chatbot de roteamento (simples, premium)
+============================================================ */
+(function(){
+  const toggle = document.getElementById('chatToggle');
+  const win = document.getElementById('chatWindow');
+  const close = document.getElementById('chatClose');
+  const body = document.getElementById('chatBody');
+  let started = false;
+  
+  function bubble(text){
+    const div = document.createElement('div');
+    div.className = 'chatBubble';
+    div.innerHTML = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+  
+  function options(list){
+    const wrap = document.createElement('div');
+    wrap.className = 'chatOptions';
+    list.forEach(item=>{
+      const opt = document.createElement('div');
+      opt.className = 'chatOption';
+      opt.setAttribute('role','button');
+      opt.setAttribute('tabindex','0');
+      opt.innerHTML = `<span>${item.label}</span><span class="right">→</span>`;
+      opt.addEventListener('click', ()=>item.onClick());
+      opt.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.onClick(); }
+      });
+      wrap.appendChild(opt);
+    });
+    body.appendChild(wrap);
+    body.scrollTop = body.scrollHeight;
+  }
+  
+  function reset(){
+    body.innerHTML = '';
+    start();
+  }
+  
+  function goToStage(stageId){
+    const card = document.querySelector('[data-expand-open="'+stageId+'"]');
+    if(card) card.click();
+    win.classList.remove('active');
+  }
+  
+  function start(){
+    started = true;
+    bubble('Olá. Se eu te fizer <strong>2 perguntas</strong>, eu consigo te dizer qual diagnóstico encaixa melhor — sem call e sem ruído.');
+    options([
+      { label: 'Estou em Ideia / Pré-MVP', onClick: ()=>{ 
+        bubble('Roteamento: <strong>Estágio 1</strong>.'); 
+        bubble('Seu maior risco é IP + terceiros + promessas informais.'); 
+        options([
+          {label:'Ver diagnóstico do Estágio 1', onClick: ()=>goToStage('stage-idea')},
+          {label:'Solicitar por e-mail', onClick: ()=>window.location.href='mailto:guilhermersaraujo@proton.me?subject=Estágio%201%20-%20Solicitação%20de%20Diagnóstico'}
+        ]); 
+      }},
+      { label: 'Tenho MVP / Tração inicial', onClick: ()=>{ 
+        bubble('Roteamento: <strong>Estágio 2</strong>.'); 
+        bubble('Normalmente o custo explode em contratos + dados + expectativa do cliente.'); 
+        options([
+          {label:'Ver diagnóstico do Estágio 2', onClick: ()=>goToStage('stage-mvp')},
+          {label:'Solicitar por e-mail', onClick: ()=>window.location.href='mailto:guilhermersaraujo@proton.me?subject=Estágio%202%20-%20Solicitação%20de%20Diagnóstico'}
+        ]); 
+      }},
+      { label: 'Estou crescendo (time/equity)', onClick: ()=>{ 
+        bubble('Roteamento: <strong>Estágio 3</strong>.'); 
+        bubble('Risco típico: conflito societário e incentivos sem desenho.'); 
+        options([
+          {label:'Ver diagnóstico do Estágio 3', onClick: ()=>goToStage('stage-growth')},
+          {label:'Solicitar por e-mail', onClick: ()=>window.location.href='mailto:guilhermersaraujo@proton.me?subject=Estágio%203%20-%20Solicitação%20de%20Diagnóstico'}
+        ]); 
+      }},
+      { label: 'Vou captar (investidor)', onClick: ()=>{ 
+        bubble('Roteamento: <strong>Estágio 4</strong>.'); 
+        bubble('O diagnóstico vira pré-due diligence para reduzir passivo e ruído.'); 
+        options([
+          {label:'Ver diagnóstico do Estágio 4', onClick: ()=>goToStage('stage-invest')},
+          {label:'Solicitar por e-mail', onClick: ()=>window.location.href='mailto:guilhermersaraujo@proton.me?subject=Estágio%204%20-%20Solicitação%20de%20Diagnóstico'}
+        ]); 
+      }},
+      { label: 'Reiniciar', onClick: reset }
+    ]);
+  }
+  
+  toggle.addEventListener('click', ()=>{
+    win.classList.add('active');
+    if(!started) start();
+  });
+  
+  close.addEventListener('click', ()=>win.classList.remove('active'));
+})();
+</script>
+
+</body>
+</html>
