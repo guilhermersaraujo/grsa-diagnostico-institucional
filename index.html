@@ -1794,6 +1794,121 @@ ul li{
   </div>
 </section>
 
+<!-- =========================================================
+     CARD ESTRATÉGICO — SESSÃO EXECUTIVA DE POSICIONAMENTO
+     Versão: 1.0 | v1.3
+========================================================= -->
+
+<section class="section" style="margin-top:80px">
+  <div class="panel">
+    <div class="pad">
+      <div class="kicker">PRODUTO ESTRATÉGICO</div>
+      <h3 class="sectionTitle" style="margin:12px 0 18px">Sessão Executiva de Posicionamento para <em>Investidores</em></h3>
+
+      <p class="lead" style="margin-bottom:20px">
+        Nem toda startup perde investimento por falta de produto.<br>
+        Muitas perdem por não saber se posicionar.
+      </p>
+
+      <p style="font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:16px">
+        Sessão individual voltada a fundadores que precisam compreender
+        como investidores leem estrutura, papéis, risco e maturidade
+        antes de qualquer conversa de captação.
+      </p>
+
+      <div class="anchor">
+        Não é mentoria. Não é assessoria jurídica.<br>
+        É leitura estratégica aplicada à tomada de decisão.
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)">
+        <span>Acesso sujeito à análise prévia</span>
+        <span class="dot"></span>
+        <span>Agenda limitada</span>
+      </div>
+
+      <div class="ctaBox">
+        <a href="#eligibilidade" class="btn btnPrimary">
+          <span>Solicitar relatório de elegibilidade</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FORMULÁRIO DE ELEGIBILIDADE — ENVIO VIA WHATSAPP
+     Versão: 1.0 | v1.3
+========================================================= -->
+
+<section id="eligibilidade" class="section">
+  <div class="sectionHead">
+    <div class="sectionIcon">📋</div>
+    <div>
+      <h3 class="sectionTitle">Análise de <em>Elegibilidade</em></h3>
+      <p class="sectionDesc">Esta sessão é destinada a fundadores em fase de decisão. O acesso está sujeito à análise prévia de contexto.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="pad">
+      <form id="eligibilityForm" style="display:flex;flex-direction:column;gap:20px">
+
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--ink)">Nome</span>
+          <input type="text" id="nome" required
+            style="padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font-size:14px">
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--ink)">E-mail</span>
+          <input type="email" id="email" required
+            style="padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font-size:14px">
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--ink)">Estágio atual da startup</span>
+          <select id="estagio" required
+            style="padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font-size:14px">
+            <option value="">Selecione</option>
+            <option>Ideia validada / MVP</option>
+            <option>Produto em operação</option>
+            <option>Pré-captação</option>
+            <option>Reorganização societária</option>
+          </select>
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--ink)">Principal objetivo da sessão</span>
+          <textarea id="objetivo" rows="4" required
+            placeholder="Ex.: entender como investidores leem estrutura, alinhar papéis entre sócios, evitar erros antes de captação."
+            style="padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font-size:14px;resize:vertical"></textarea>
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--ink)">Você compreende que esta sessão não envolve assessoria jurídica nem execução?</span>
+          <select id="ciencia" required
+            style="padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font-size:14px">
+            <option value="">Selecione</option>
+            <option>Sim</option>
+            <option>Não</option>
+          </select>
+        </label>
+
+        <button type="button" class="btn btnPrimary" onclick="enviarWhatsApp()" style="align-self:flex-start">
+          <span>Solicitar análise</span>
+        </button>
+
+      </form>
+
+      <p style="margin-top:20px;font-size:12px;color:var(--muted);line-height:1.6">
+        O envio não garante disponibilidade.
+        Caso o perfil seja aderente, as condições e agenda serão informadas.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- RODAPÉ INSTITUCIONAL -->
 <section style="margin-top:60px">
   <div class="panel">
@@ -1806,7 +1921,7 @@ ul li{
       <div style="display:flex;flex-direction:column;gap:8px;align-items:center;margin-bottom:18px">
         <div style="font-size:12px;color:var(--muted)">
           Contato institucional:
-          <a href="mailto:guilhermersaraujo@proton.me" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(159,183,255,.35)">guilhermersaraujo@proton.me</a>
+          <a href="/cdn-cgi/l/email-protection#abccdec2c7c3ced9c6ced9d8cad9cadec1c4ebdbd9c4dfc4c585c6ce" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(159,183,255,.35)"><span class="__cf_email__" data-cfemail="1a7d6f7376727f68777f68697b687b6f70755a6a68756e757434777f">[email&#160;protected]</span></a>
         </div>
         <div style="font-size:12px;color:var(--muted)">
           Portal institucional:
@@ -1858,7 +1973,7 @@ ul li{
   <div class="chatBody" id="chatBody"></div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ============================================================
    PATCH v1 — Expand por estágio
 ============================================================ */
@@ -2018,6 +2133,46 @@ ul li{
   
   close.addEventListener('click', ()=>win.classList.remove('active'));
 })();
+</script>
+
+<!-- =========================================================
+     SCRIPT — ENVIO AUTOMÁTICO PARA WHATSAPP (ELEGIBILIDADE)
+     Versão: 1.4 | Produto identificado
+========================================================= -->
+<script>
+function enviarWhatsApp() {
+  const nome = document.getElementById('nome').value;
+  const email = document.getElementById('email').value;
+  const estagio = document.getElementById('estagio').value;
+  const objetivo = document.getElementById('objetivo').value;
+  const ciencia = document.getElementById('ciencia').value;
+
+  if (!nome || !email || !estagio || !objetivo || !ciencia) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
+  const mensagem =
+`Solicitação: Relatório de Elegibilidade
+Produto: Sessão Executiva de Posicionamento para Investidores
+
+Nome: ${nome}
+E-mail: ${email}
+Estágio da startup: ${estagio}
+
+Objetivo da sessão:
+${objetivo}
+
+Ciência sobre escopo (sem assessoria jurídica): ${ciencia}
+
+Origem: Portal institucional (card Sessão Executiva)
+`;
+
+  const numeroWhatsApp = "5581991566874";
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, "_blank");
+}
 </script>
 
 </body>
